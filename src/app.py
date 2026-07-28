@@ -1,6 +1,3 @@
-"""
-Core app that connects tools, prompts, test cases and the LLM provider.
-"""
 
 import ast
 import json
