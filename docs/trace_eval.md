@@ -63,4 +63,4 @@ Khi người dùng yêu cầu đăng ký khi chưa đủ điều kiện hoặc s
 - Nêu rằng không thể bỏ qua điều kiện tiên quyết hoặc thay đổi kết quả học tập.
 - Đề xuất cách hợp lệ: hoàn thành môn còn thiếu, liên hệ cố vấn học tập hoặc phòng đào tạo.
 
-> Guardrail: dừng agent sau tối đa `MAX_ITERATIONS = 3` vòng lặp để tránh gọi tool lặp vô hạn.
+> Guardrail: dừng agent sau tối đa `MAX_ITERATIONS = 3` vòng lặp để tránh gọi tool lặp 
