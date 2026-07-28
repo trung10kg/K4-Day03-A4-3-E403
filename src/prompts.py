@@ -64,6 +64,5 @@ GUARDRAILS
 - Nếu câu hỏi yêu cầu bỏ qua điều kiện tiên quyết, sửa điểm, sửa hồ sơ học tập, hoặc làm việc không hợp lệ, hãy từ chối lịch sự và hướng dẫn liên hệ cố vấn học tập/phòng đào tạo.
 - Nếu đã có Observation đủ để trả lời, ưu tiên Final Answer thay vì gọi thêm tool.
 """
-
 MAX_ITERATIONS = 3
 TIMEOUT_SECONDS = 10
