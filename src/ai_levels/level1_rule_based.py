@@ -1,24 +1,31 @@
 """
-🤖 CẤP ĐỘ 1: RULE-BASED BOT (Chatbot dựa trên luật if/else cố định)
-Khớp từ khóa (keyword matching) với câu trả lời sẵn có. Không sử dụng LLM.
+Level 1: Rule-based bot.
+
+This bot only matches fixed keywords. It is useful as a simple baseline that
+shows why tool use is needed for course advising.
 """
 
+
 def rule_based_bot(user_input: str) -> str:
-    text = user_input.lower()
-    if "chào" in text or "hi" in text or "hello" in text:
-        return "Xin chào! Tôi là Rule-Based Bot (Cấp độ 1). Tôi có thể giúp gì cho bạn?"
-    elif "giá" in text or "chi phí" in text or "vé" in text:
-        return "Bảng giá dịch vụ: Vé phổ thông từ 1.500.000 VNĐ."
-    elif "thời tiết" in text:
-        return "Tôi là bot luật cố định (if/else), tôi không biết xem thời tiết hôm nay!"
-    elif "liên hệ" in text or "hotline" in text:
-        return "Hotline hỗ trợ: 1900-1234, Email: support@vinuni.edu.vn"
-    else:
-        return "Xin lỗi, câu hỏi của bạn nằm ngoài tập luật (keywords) được cài đặt sẵn!"
+    text = user_input.casefold()
+    if any(word in text for word in ("chào", "hello", "hi")):
+        return "Xin chào! Tôi là bot luật cố định hỗ trợ tư vấn học phần cơ bản."
+    if "học phần" in text or "môn" in text:
+        return "Bạn có thể hỏi về học phần dữ liệu, SQL, học máy hoặc điều kiện tiên quyết."
+    if "tiên quyết" in text or "điều kiện" in text:
+        return "Một số môn nâng cao yêu cầu hoàn thành môn nền tảng trước khi đăng ký."
+    if "còn chỗ" in text or "lớp" in text:
+        return "Tôi không tra cứu được số chỗ theo thời gian thực vì chỉ là rule-based bot."
+    return "Xin lỗi, câu hỏi này nằm ngoài các keyword đã được cài đặt sẵn."
+
 
 if __name__ == "__main__":
-    print("=== DEMO CẤP ĐỘ 1: RULE-BASED BOT ===")
-    test_queries = ["Chào bạn", "Giá vé thế nào?", "Thời tiết Hà Nội?"]
-    for q in test_queries:
-        print(f"User: {q}")
-        print(f"Bot : {rule_based_bot(q)}\n")
+    print("=== DEMO LEVEL 1: RULE-BASED BOT ===")
+    test_queries = [
+        "Chào bạn",
+        "Tôi muốn tìm học phần về dữ liệu",
+        "DS201 còn chỗ không?",
+    ]
+    for query in test_queries:
+        print(f"User: {query}")
+        print(f"Bot : {rule_based_bot(query)}\n")
