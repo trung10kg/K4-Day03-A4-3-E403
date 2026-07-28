@@ -1,0 +1,35 @@
+flowchart TD
+    A([Sinh viên gửi câu hỏi]) --> B{Câu hỏi có cần dữ liệu học vụ<br/>hoặc suy luận nhiều bước?}
+
+    B -->|Không: câu hỏi đơn giản| C[Chatbot Path]
+    C --> C1[Trả lời từ kiến thức chung:<br/>tín chỉ, kỹ năng, lời khuyên học tập]
+    C1 --> Z([Phản hồi sinh viên])
+
+    B -->|Có: tra cứu hoặc nhiều bước| D[ReAct Agent Path]
+    D --> E{Yêu cầu có vi phạm<br/>quy định học vụ?}
+    E -->|Có| F[Guardrail: từ chối lịch sự<br/>và hướng dẫn cách hợp lệ]
+    F --> Z
+
+    E -->|Không| G[Thought: xác định thông tin cần tra]
+    G --> H{Chọn tool phù hợp}
+    H -->|Tìm môn theo chủ đề| I[search_courses]
+    H -->|Kiểm tra tiên quyết| J[check_prerequisites]
+    H -->|Tra lớp, lịch và chỗ trống| K[search_course_sections]
+
+    I --> L[Observation: nhận dữ liệu tool]
+    J --> L
+    K --> L
+    L --> M{Đã đủ thông tin<br/>để trả lời?}
+    M -->|Chưa đủ| G
+    M -->|Đủ| N[Final Answer: tư vấn dựa trên Observation]
+    N --> Z
+
+    M -->|Tool lỗi hoặc không tìm thấy dữ liệu| O[Fallback: giải thích lỗi,<br/>yêu cầu mã/tên học phần hợp lệ]
+    O --> Z
+
+    classDef chatbot fill:#E8F4FD,stroke:#1976D2,color:#0D47A1;
+    classDef react fill:#E8F5E9,stroke:#388E3C,color:#1B5E20;
+    classDef guard fill:#FFF3E0,stroke:#F57C00,color:#E65100;
+    class C,C1 chatbot;
+    class D,G,H,I,J,K,L,M,N react;
+    class E,F,O guard;
